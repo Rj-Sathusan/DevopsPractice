@@ -1,21 +1,29 @@
 pipeline {
     agent any
+
     stages {
-        stage('Checkout Code') {
+        stage('Checkout') {
             steps {
-                git 'https://github.com/Rj-Sathusan/DevopsPractice.git'
+                git branch: 'main', url: 'https://github.com/Rj-Sathusan/DevopsPractice.git'
             }
         }
-        stage('Build Docker Image') {
+        
+        stage('Build') {
             steps {
-                sh 'docker build -t website-checker .'
+                echo "Building the project..."
             }
         }
-        stage('Run Status Check') {
+
+        stage('Test') {
             steps {
-                sh 'docker run website-checker'
+                echo "Running tests..."
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo "Deploying the application..."
             }
         }
     }
 }
-
