@@ -1,0 +1,25 @@
+name: Website Status CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  check-website:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.8'
+
+      - name: Install curl
+        run: sudo apt-get install -y curl
+
+      - name: Run Website Check
+        run: bash check_website.sh
+
